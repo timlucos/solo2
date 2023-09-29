@@ -23,20 +23,20 @@ extern "C"
 {
 	int printf(const char* format, ...);
 }
-//ñòðîêà ñ ñèìâîëàìè, êîòîðûå íàäî óáðàòü
+
 const std::string badCharacters = "( ) ` ~ ! @ # $ % ^ & * - + = | \\ { } [ ] : ; \" ' < > , . ? / _ … \n";
 
 void taskOne() {
-	char inputString[8192]; //áóôåð ââîäà
+	char inputString[8192]; 
 
-	//çàïðîñèòü ñòðîêó
+	
 	printf("Ââåäèòå ñòðîêó:\n");
 	fgets(inputString, _countof(inputString), stdin);
 
-	//êîíâåðòèðîâàòü ñòðîêó C â String
+	
 	std::string unfilteredString(inputString);
 
-	//îòôèëüòðîâàòü
+	
 	std::string filteredString = "";
 	for (int i = 0; i < unfilteredString.length(); i++) {
 		if (!checkForBadSymbol(unfilteredString.at(i))) {
@@ -44,25 +44,25 @@ void taskOne() {
 		}
 	}
 
-	//îòñîðòèðîâàòü îòôèëüòðîâàííóþ ñòðîêó
+	
 	std::string sortedString = sortString(filteredString);
 
-	//âûâåñòè
+	
 	printf("Îòñîðòèðîâàííàÿ ñòðîêà:\n");
 	printf(sortedString.c_str());
 	printf("\n\n");
 }
 
-//Îïðåäåëÿåò, ÿâëÿåòñÿ ëè ñèìâîë ïëîõèì (òðåáóþùèì ôèëüòðàöèè)
+
 bool checkForBadSymbol(char testedChar) {
-	//Ñðàâíèâàåì ñèìâîë ñ êàæäûì ýëåìåíòîâ ìàññèâà badSymbols
+
 	for (int i = 0; i < badCharacters.length(); i++) {
 		if (testedChar == badCharacters[i])
 			return true;
 	}
 	return false;
 }
-//Ñîðòèðóåò âõîäíóþ ñòðîêó, èñïîëüçóÿ ñîðòèðîâêó ïóçûðüêîì
+
 std::string sortString(std::string s) {
 	std::string sortedString = s;
 	bool swapped;
